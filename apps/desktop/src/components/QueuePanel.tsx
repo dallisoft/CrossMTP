@@ -74,16 +74,17 @@ export function QueuePanel({ jobs, groups, onCancel }: Props) {
           // callback and `row.sent` barely moves.
           const useBulkProgress =
             row.bulkTotalFiles !== undefined && row.bulkTotalFiles > 0;
-          const progressPct = useBulkProgress
-            ? Math.min(
-                100,
-                Math.floor(((row.bulkFilesDone ?? 0) / (row.bulkTotalFiles ?? 1)) * 100),
-              )
-            : row.total > 0
+          const progressPct =
+            row.total > 0
               ? Math.min(100, Math.floor((row.sent / row.total) * 100))
-              : row.stateTag === "completed"
-                ? 100
-                : 0;
+              : useBulkProgress
+                ? Math.min(
+                    100,
+                    Math.floor(((row.bulkFilesDone ?? 0) / (row.bulkTotalFiles ?? 1)) * 100),
+                  )
+                : row.stateTag === "completed"
+                  ? 100
+                  : 0;
           const completedFiles = useBulkProgress
             ? row.bulkFilesDone ?? 0
             : row.jobs.filter((job) => job.state.tag === "completed").length;
