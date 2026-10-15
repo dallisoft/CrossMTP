@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "CrossMTP",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "identifier": "dev.crossmtp.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "CrossMTP",
-        "width": 1080,
-        "height": 720,
+        "width": 1240,
+        "height": 820,
         "minWidth": 800,
         "minHeight": 540,
         "dragDropEnabled": true

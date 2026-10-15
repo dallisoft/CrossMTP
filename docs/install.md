@@ -38,14 +38,26 @@ pkg-config --modversion libmtp
 
 ## 3. CrossMTP 설치
 
-### 옵션 A: 번들 (.app)
+### 옵션 A: 릴리즈에서 내려받기 (Apple Silicon)
+
+[GitHub Releases](https://github.com/dallisoft/CrossMTP/releases)에서 최신 버전의 파일을 내려받습니다.
+릴리즈를 발행하면 GitHub Actions(`.github/workflows/release.yml`)가 Apple Silicon용으로 빌드해 자동으로 첨부합니다.
+
+* `CrossMTP_<버전>_aarch64.dmg` — 열어서 CrossMTP를 Applications 폴더로 끌어 놓기
+* `CrossMTP_<버전>_aarch64.app.zip` — 압축을 풀어 `/Applications`로 옮기기
+* `SHA256SUMS.txt` — 내려받은 파일 확인: `shasum -a 256 -c SHA256SUMS.txt`
+
+릴리즈 바이너리도 `libmtp`를 번들에 포함하지 않으므로 위 2단계의 `brew install libmtp`가 필요합니다.
+서명/공증이 없으므로 아래 "확인되지 않은 개발자" 안내를 참고하세요.
+
+### 옵션 B: 직접 빌드한 번들 (.app)
 
 ```bash
 # 빌드 후 (개발자)
-open apps/desktop/src-tauri/target/release/bundle/macos/CrossMTP.app
+open target/release/bundle/macos/CrossMTP.app
 
 # 또는 .app을 /Applications 로 복사
-cp -R apps/desktop/src-tauri/target/release/bundle/macos/CrossMTP.app /Applications/
+cp -R target/release/bundle/macos/CrossMTP.app /Applications/
 ```
 
 > 베타 단계는 코드 sign / notarization이 안 되어 있어 처음 실행 시 macOS가
@@ -56,7 +68,7 @@ cp -R apps/desktop/src-tauri/target/release/bundle/macos/CrossMTP.app /Applicati
 > xattr -d com.apple.quarantine /Applications/CrossMTP.app
 > ```
 
-### 옵션 B: 소스에서 빌드
+### 옵션 C: 소스에서 빌드
 
 ```bash
 git clone <repo-url> CrossMTP
