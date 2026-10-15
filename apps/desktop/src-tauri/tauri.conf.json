@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "CrossMTP",
-        "width": 1080,
-        "height": 720,
+        "width": 1240,
+        "height": 820,
         "minWidth": 800,
         "minHeight": 540,
         "dragDropEnabled": true

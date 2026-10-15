@@ -70,6 +70,10 @@ export interface JobView {
   currentFile?: string;
   filesDone?: number;
   totalFiles?: number;
+  /** Smoothed bytes/sec while transferring (UI-side estimate). */
+  rate?: number;
+  sampleAt?: number;
+  sampleSent?: number;
 }
 
 export interface QueueGroupView {
